@@ -1,0 +1,106 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>IMAGE GALLERY</title>
+</head>
+<style>
+*{
+margin:0;
+padding:0;
+}
+body{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	flex-direction: column;
+	background: blue;
+}
+.btns{
+margin-top:3%;
+}
+
+.btns button{
+background: green;
+padding:15px 45px;
+border:none;
+font-family: times new roman;
+font-size:18px;
+color:pink;
+font-weight:700;
+margin: 0 15px;
+border-radius: 30px;
+align-items: center;
+} 
+
+
+#gallery{
+background:green;
+display: flex;
+width:600px;
+height:400px;
+border:20px ridge snow;
+align-items:center;
+justify-content: center;
+position: relative;
+}
+
+#current{
+	max-width: 600px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: all 0.5s ease-in-out;
+	opacity: 1;
+
+}
+
+#current.fade-out{
+	opacity: 0;
+}
+</style>
+<body>
+<div id="gallery">
+<img src="C:\Users\DELL\Downloads\istockphoto-1065043970-1024x1024.jpg"  id="current">
+</div>
+
+<div class="btns" >
+<button  id="prev-button">Prev</button>
+<button id="next-button">Next</button>
+</div>
+<script >
+	const gallery = document.getElementByid('gallery');
+	const prevButton = document.getElementByid('prev-button'); 
+	const nextButton = document.getElementByid('next-button');
+
+	const images =['C:\Users\DELL\Downloads\img1.jpg', 'C:\Users\DELL\Downloads\img2.jpg', 'C:\Users\DELL\Downloads\img3.jpg', 'C:\Users\DELL\Downloads\img4.jpg', 'C:\Users\DELL\Downloads\img5.jpg'];
+
+	let currentIndex = 0;
+
+	prevButton.addeventlistener('click', () =>{
+		currentIndex =(currentIndex +1 +images.length)% images.length;
+		updateimage();
+	});
+
+    	nextButton.addeventlistener('click', () =>{
+		currentIndex =(currentIndex +1)% images.length;
+		updateimage();
+	});
+
+    	function updateimage() {
+    		const img = gallery.querySelector('#current');
+    		img.classlist.add('fade-out');
+    		setTimeout(() =>{
+    			img.src = images[currentIndex];
+    			img.alt = images[currentIndex];
+    			img.classlist.remove('fade-out');
+    		}, 500);
+    		}
+</script>
+
+
+
+
+
+</body>
+</html>
